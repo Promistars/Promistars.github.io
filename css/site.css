@@ -11,8 +11,9 @@
   --gold: #b7791f;
   --shadow: 0 24px 70px rgba(19, 32, 27, 0.09);
   --shadow-hover: 0 32px 86px rgba(19, 32, 27, 0.16);
-  --display: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --display: "Cormorant Garamond", "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  --serif-cn: "Noto Serif SC", "Songti SC", "SimSun", serif;
 }
 
 * {
@@ -74,7 +75,7 @@ button {
 .brand {
   font-family: var(--display);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
 }
 
 .nav-links {
@@ -203,7 +204,8 @@ h3 {
 h1 {
   max-width: 11ch;
   font-size: clamp(4.2rem, 14vw, 10rem);
-  letter-spacing: -0.045em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .role {
@@ -217,6 +219,7 @@ h1 {
   margin: 1.6rem 0 0;
   color: #274239;
   font-size: clamp(1.3rem, 3vw, 2.2rem);
+  font-family: var(--serif-cn);
   font-weight: 600;
   line-height: 1.28;
 }
@@ -373,7 +376,8 @@ h1 {
 
 .section-title h2 {
   font-size: clamp(2rem, 5vw, 3.8rem);
-  letter-spacing: -0.035em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .about-panel {
@@ -406,6 +410,7 @@ h1 {
 
 .education-main h3 {
   font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
 }
 
 .accent {
