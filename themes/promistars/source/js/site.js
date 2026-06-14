@@ -88,6 +88,38 @@
       .join("");
   }
 
+  function setupInteractiveCards(root = document) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return;
+
+    root.querySelectorAll(".panel, .hero-card").forEach((card) => {
+      if (card.dataset.floatBound === "true") return;
+      card.dataset.floatBound = "true";
+
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const px = x / rect.width;
+        const py = y / rect.height;
+        const tiltY = (px - 0.5) * 7;
+        const tiltX = (0.5 - py) * 7;
+
+        card.style.setProperty("--glow-x", `${px * 100}%`);
+        card.style.setProperty("--glow-y", `${py * 100}%`);
+        card.style.setProperty("--tilt-x", `${tiltX.toFixed(2)}deg`);
+        card.style.setProperty("--tilt-y", `${tiltY.toFixed(2)}deg`);
+      });
+
+      card.addEventListener("pointerleave", () => {
+        card.style.setProperty("--glow-x", "50%");
+        card.style.setProperty("--glow-y", "50%");
+        card.style.setProperty("--tilt-x", "0deg");
+        card.style.setProperty("--tilt-y", "0deg");
+      });
+    });
+  }
+
   function updateContact(data) {
     const emailLink = document.querySelector("[data-email-link]");
     emailLink.textContent = email;
@@ -117,6 +149,7 @@
     renderHonors(data);
     renderLeadership(data);
     updateContact(data);
+    setupInteractiveCards();
   }
 
   function setupCanvas() {
@@ -206,5 +239,6 @@
   });
 
   applyLanguage();
+  setupInteractiveCards();
   setupCanvas();
 })();

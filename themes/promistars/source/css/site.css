@@ -10,6 +10,7 @@
   --blue: #2563eb;
   --gold: #b7791f;
   --shadow: 0 24px 70px rgba(19, 32, 27, 0.09);
+  --shadow-hover: 0 32px 86px rgba(19, 32, 27, 0.16);
   --display: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
 }
@@ -185,10 +186,20 @@ h1 {
 }
 
 .button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 999px;
   padding: 0.85rem 1.2rem;
   font-size: 0.95rem;
   font-weight: 700;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
+  will-change: transform;
 }
 
 .button.primary {
@@ -197,19 +208,74 @@ h1 {
   box-shadow: 0 18px 40px rgba(19, 32, 27, 0.18);
 }
 
+.button:hover {
+  transform: translateY(-3px);
+}
+
+.button.primary:hover {
+  box-shadow: 0 24px 54px rgba(19, 32, 27, 0.24);
+}
+
 .button.secondary {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.64);
   color: var(--ink);
 }
 
+.button.secondary:hover {
+  border-color: rgba(15, 118, 110, 0.3);
+  background: rgba(255, 255, 255, 0.82);
+}
+
 .hero-card,
 .panel {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  position: relative;
+  overflow: hidden;
   border: 1px solid rgba(19, 32, 27, 0.1);
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.72);
+  background:
+    radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(15, 118, 110, 0.15), transparent 34%),
+    rgba(255, 255, 255, 0.72);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(0);
+  transform-style: preserve-3d;
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms ease,
+    border-color 260ms ease,
+    background 260ms ease;
+  will-change: transform;
+}
+
+.hero-card::after,
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 36%, rgba(15, 118, 110, 0.1));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.hero-card:hover,
+.panel:hover,
+.panel:focus-within {
+  border-color: rgba(15, 118, 110, 0.24);
+  box-shadow: var(--shadow-hover);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-8px);
+}
+
+.hero-card:hover::after,
+.panel:hover::after,
+.panel:focus-within::after {
+  opacity: 1;
 }
 
 .hero-card {
@@ -219,10 +285,22 @@ h1 {
 }
 
 .hero-card > div {
+  position: relative;
+  z-index: 1;
   border: 1px solid rgba(19, 32, 27, 0.08);
   border-radius: 18px;
   padding: 1.1rem;
   background: rgba(247, 250, 244, 0.72);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.hero-card:hover > div {
+  border-color: rgba(15, 118, 110, 0.16);
+  background: rgba(255, 255, 255, 0.64);
+  transform: translateZ(18px);
 }
 
 .metric-label,
@@ -375,7 +453,15 @@ h1 {
   overflow: hidden;
 }
 
+.project-card:hover .project-button h3,
+.timeline-card:hover h3,
+.honor-card:hover h3 {
+  color: var(--teal);
+}
+
 .project-button {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 1rem;
@@ -408,12 +494,16 @@ h1 {
 }
 
 .project-intro {
+  position: relative;
+  z-index: 1;
   margin: 0;
   padding: 0 1.8rem 1.4rem;
   color: #40564f;
 }
 
 .project-details {
+  position: relative;
+  z-index: 1;
   display: none;
   border-top: 1px solid rgba(19, 32, 27, 0.08);
   padding: 1.3rem 1.8rem 1.6rem;
@@ -431,7 +521,13 @@ h1 {
 }
 
 .honor-card {
+  position: relative;
   padding: 1.35rem;
+}
+
+.honor-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .honor-card h3 {
@@ -461,6 +557,11 @@ h1 {
 .timeline-card {
   position: relative;
   padding: 1.35rem;
+}
+
+.timeline-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .timeline-card::before {
@@ -501,6 +602,11 @@ h1 {
   grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
   gap: 2rem;
   align-items: center;
+}
+
+.contact-panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-lines {
@@ -599,5 +705,15 @@ h1 {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .hero-card,
+  .panel,
+  .button,
+  .hero-card:hover,
+  .panel:hover,
+  .panel:focus-within,
+  .button:hover {
+    transform: none;
   }
 }
