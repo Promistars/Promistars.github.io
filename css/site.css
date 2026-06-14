@@ -123,6 +123,7 @@ main {
 }
 
 .hero {
+  position: relative;
   min-height: 100svh;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
@@ -132,7 +133,37 @@ main {
 }
 
 .hero-copy {
+  position: relative;
+  z-index: 2;
   max-width: 780px;
+}
+
+.hero-art {
+  position: absolute;
+  z-index: 0;
+  top: 5.5rem;
+  right: min(-8vw, -2rem);
+  width: min(74vw, 980px);
+  margin: 0;
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+.hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--paper) 0%, rgba(247, 250, 244, 0.74) 28%, rgba(247, 250, 244, 0.08) 68%),
+    linear-gradient(180deg, rgba(247, 250, 244, 0.28), var(--paper) 100%);
+}
+
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 34px;
+  filter: saturate(0.95) contrast(0.98);
 }
 
 .eyebrow {
@@ -257,9 +288,12 @@ h1 {
 }
 
 .hero-card {
+  position: relative;
+  z-index: 2;
   display: grid;
   gap: 1rem;
   padding: 1rem;
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .hero-card > div {
@@ -651,6 +685,13 @@ h1 {
 
   .hero {
     padding-top: 8.5rem;
+  }
+
+  .hero-art {
+    top: 7rem;
+    right: -35vw;
+    width: 120vw;
+    opacity: 0.48;
   }
 
   .hero-card {

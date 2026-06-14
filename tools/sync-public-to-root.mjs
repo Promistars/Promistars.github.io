@@ -8,11 +8,13 @@ const publicDir = join(repoRoot, "public");
 const targets = [
   "index.html",
   "css/site.css",
-  "js/site.js"
+  "js/site.js",
+  "images/hero-science.png"
 ];
 
 await mkdir(join(repoRoot, "css"), { recursive: true });
 await mkdir(join(repoRoot, "js"), { recursive: true });
+await mkdir(join(repoRoot, "images"), { recursive: true });
 
 for (const target of targets) {
   await rm(join(repoRoot, target), { force: true });
