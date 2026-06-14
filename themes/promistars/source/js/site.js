@@ -105,15 +105,11 @@
         const tiltY = (px - 0.5) * 7;
         const tiltX = (0.5 - py) * 7;
 
-        card.style.setProperty("--glow-x", `${px * 100}%`);
-        card.style.setProperty("--glow-y", `${py * 100}%`);
         card.style.setProperty("--tilt-x", `${tiltX.toFixed(2)}deg`);
         card.style.setProperty("--tilt-y", `${tiltY.toFixed(2)}deg`);
       });
 
       card.addEventListener("pointerleave", () => {
-        card.style.setProperty("--glow-x", "50%");
-        card.style.setProperty("--glow-y", "50%");
         card.style.setProperty("--tilt-x", "0deg");
         card.style.setProperty("--tilt-y", "0deg");
       });
