@@ -118,6 +118,8 @@ button {
 }
 
 main {
+  position: relative;
+  z-index: 1;
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
 }
@@ -139,11 +141,11 @@ main {
 }
 
 .hero-art {
-  position: absolute;
+  position: fixed;
   z-index: 0;
-  inset: 3.8rem min(-18vw, -8rem) auto auto;
-  width: min(88vw, 1180px);
-  height: min(70svh, 680px);
+  inset: 6rem min(-18vw, -8rem) auto auto;
+  width: min(86vw, 1160px);
+  height: min(68svh, 660px);
   margin: 0;
   opacity: 0.38;
   pointer-events: none;
@@ -698,7 +700,7 @@ h1 {
   }
 
   .hero-art {
-    inset: 7rem -55vw auto auto;
+    inset: 8rem -58vw auto auto;
     width: 150vw;
     height: 58svh;
     opacity: 0.24;
