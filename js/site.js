@@ -131,6 +131,7 @@
     document.querySelector('meta[name="description"]').setAttribute("content", data.description);
 
     setText("[data-name]", data.name);
+    setText("[data-name-meaning]", data.nameMeaning);
     Object.keys(data.nav).forEach((key) => setText(`[data-nav="${key}"]`, data.nav[key]));
     setText("[data-lang-toggle]", data.nav.langSwitch);
     Object.keys(data.hero).forEach((key) => setText(`[data-hero="${key}"]`, data.hero[key]));

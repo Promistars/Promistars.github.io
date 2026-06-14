@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Promistars Numerals";
+  src: local("Times New Roman"), local("Times");
+  unicode-range: U+0025, U+002B, U+002D, U+002E, U+002F, U+0030-0039;
+}
+
 :root {
   color-scheme: light;
   --paper: #f7faf4;
@@ -9,11 +15,14 @@
   --teal-soft: rgba(15, 118, 110, 0.12);
   --blue: #2563eb;
   --gold: #b7791f;
+  --cinnabar: #9f2f24;
   --shadow: 0 24px 70px rgba(19, 32, 27, 0.09);
   --shadow-hover: 0 32px 86px rgba(19, 32, 27, 0.16);
-  --display: "Cormorant Garamond", "Noto Serif SC", "Songti SC", "SimSun", serif;
-  --body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
-  --serif-cn: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --display: "Promistars Numerals", "Cormorant Garamond", "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --body: "Promistars Numerals", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  --serif-cn: "Promistars Numerals", "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --name-cn: "Promistars Numerals", "Ma Shan Zheng", "STKaiti", "KaiTi", "Noto Serif SC", cursive;
+  --number: "Promistars Numerals", "Times New Roman", Times, serif;
 }
 
 * {
@@ -208,6 +217,89 @@ h1 {
   letter-spacing: -0.02em;
 }
 
+.hero-name {
+  position: relative;
+  display: inline-block;
+  max-width: none;
+  isolation: isolate;
+}
+
+html[lang="zh-CN"] .hero-name {
+  font-family: var(--name-cn);
+  font-weight: 400;
+  letter-spacing: 0.045em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+html[lang="en"] .hero-name {
+  font-family: var(--display);
+  letter-spacing: -0.025em;
+}
+
+html[lang="zh-CN"] .hero-name::before,
+html[lang="zh-CN"] .hero-name::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+html[lang="zh-CN"] .hero-name::before {
+  left: 0.08em;
+  right: 0.16em;
+  bottom: 0.07em;
+  height: 0.14em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(159, 47, 36, 0.24), rgba(183, 121, 31, 0.14), transparent);
+  filter: blur(0.5px);
+}
+
+html[lang="zh-CN"] .hero-name::after {
+  top: 0.03em;
+  right: -0.06em;
+  width: 0.18em;
+  height: 0.18em;
+  border: 1px solid rgba(159, 47, 36, 0.5);
+  border-radius: 50%;
+  background: rgba(159, 47, 36, 0.08);
+}
+
+.name-note {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 640px;
+  margin-top: clamp(0.75rem, 1.8vw, 1.2rem);
+}
+
+.name-seal {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 2px solid rgba(159, 47, 36, 0.72);
+  border-radius: 0.45rem;
+  background:
+    linear-gradient(135deg, rgba(159, 47, 36, 0.08), rgba(255, 255, 255, 0.45)),
+    rgba(247, 250, 244, 0.78);
+  color: var(--cinnabar);
+  font-family: var(--name-cn);
+  font-size: 1.45rem;
+  line-height: 1;
+  transform: rotate(-4deg);
+  box-shadow: inset 0 0 0 1px rgba(159, 47, 36, 0.18);
+}
+
+.name-note p {
+  margin: 0;
+  color: #4f655d;
+  font-family: var(--serif-cn);
+  font-size: clamp(0.96rem, 1.7vw, 1.08rem);
+  font-weight: 600;
+  line-height: 1.75;
+}
+
 .role {
   margin: 1.2rem 0 0;
   color: var(--muted);
@@ -369,7 +461,7 @@ h1 {
 
 .section-title span {
   color: var(--teal);
-  font-family: var(--display);
+  font-family: var(--number);
   font-size: 0.85rem;
   font-weight: 700;
 }
@@ -452,6 +544,7 @@ h1 {
 .education-stat p {
   margin: 0;
   color: var(--muted);
+  font-family: var(--number), var(--body);
   font-size: 0.83rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -461,7 +554,7 @@ h1 {
 .education-stat strong {
   display: block;
   margin-top: 0.8rem;
-  font-family: var(--display);
+  font-family: var(--number);
   font-size: 4rem;
   line-height: 1;
 }
@@ -525,6 +618,7 @@ h1 {
   border-radius: 999px;
   padding: 0.25rem 0.65rem;
   color: var(--muted);
+  font-family: var(--number), var(--body);
   font-size: 0.78rem;
 }
 
@@ -624,6 +718,7 @@ h1 {
 
 .timeline-head span {
   color: var(--muted);
+  font-family: var(--number), var(--body);
   font-size: 0.82rem;
   white-space: nowrap;
 }
@@ -653,6 +748,7 @@ h1 {
   display: inline-flex;
   margin-top: 0.25rem;
   color: var(--teal);
+  font-family: var(--number), var(--body);
   font-size: clamp(1.05rem, 2vw, 1.35rem);
   font-weight: 700;
 }
@@ -669,6 +765,7 @@ h1 {
 .page-footer {
   padding: 3rem 0 2rem;
   color: var(--muted);
+  font-family: var(--number), var(--body);
   text-align: center;
   font-size: 0.85rem;
 }

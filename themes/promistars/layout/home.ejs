@@ -18,8 +18,8 @@ const year = new Date().getFullYear();
     <meta name="twitter:card" content="summary">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/site.css?v=20260615-art-fonts">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=20260615-name-seal">
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambient" aria-hidden="true"></canvas>
@@ -43,7 +43,11 @@ const year = new Date().getFullYear();
       <section class="hero" id="hero">
         <div class="hero-copy">
           <p class="eyebrow" data-hero="eyebrow"><%= lang.hero.eyebrow %></p>
-          <h1 data-name><%= lang.name %></h1>
+          <h1 class="hero-name" data-name><%= lang.name %></h1>
+          <div class="name-note" aria-label="Name meaning">
+            <span class="name-seal" aria-hidden="true">璋</span>
+            <p data-name-meaning><%= lang.nameMeaning %></p>
+          </div>
           <p class="role" data-hero="role"><%= lang.hero.role %></p>
           <p class="tagline" data-hero="tagline"><%= lang.hero.tagline %></p>
           <div class="hero-actions">
@@ -156,6 +160,6 @@ const year = new Date().getFullYear();
     <script>
       window.__PROFILE__ = <%- JSON.stringify(profile) %>;
     </script>
-    <script src="/js/site.js?v=20260615-art-fonts"></script>
+    <script src="/js/site.js?v=20260615-name-seal"></script>
   </body>
 </html>
