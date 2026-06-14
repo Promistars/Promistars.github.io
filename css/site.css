@@ -269,7 +269,8 @@ h1 {
 .panel:focus-within {
   border-color: rgba(15, 118, 110, 0.24);
   box-shadow: var(--shadow-hover);
-  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-8px);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-14px) scale(1.015);
+  animation: card-float 1.7s ease-in-out infinite alternate;
 }
 
 .hero-card:hover::after,
@@ -459,6 +460,12 @@ h1 {
   color: var(--teal);
 }
 
+.project-card:hover .project-period {
+  border-color: rgba(15, 118, 110, 0.28);
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--teal);
+}
+
 .project-button {
   position: relative;
   z-index: 1;
@@ -638,6 +645,16 @@ h1 {
   font-size: 0.85rem;
 }
 
+@keyframes card-float {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 -3px;
+  }
+}
+
 @media (max-width: 860px) {
   .site-header {
     grid-template-columns: auto auto;
@@ -714,6 +731,7 @@ h1 {
   .panel:hover,
   .panel:focus-within,
   .button:hover {
+    animation: none;
     transform: none;
   }
 }
