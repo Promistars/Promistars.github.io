@@ -1,0 +1,47 @@
+title: 木晨璋
+subtitle: 药学 × AI × 创新创业
+description: 浙江大学药学（A+）与竺可桢学院｜AI 赋能免疫药物与科研平台｜国家奖学金获得者
+keywords:
+  - 木晨璋
+  - Chenzhang Mu
+  - Zhejiang University
+  - AI for Science
+  - Pharmacy
+  - Immunotherapy
+author: 木晨璋
+language: zh-CN
+timezone: Asia/Shanghai
+
+url: https://promistars.github.io
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults: {}
+
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+
+theme: promistars
+
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+
+prismjs:
+  enable: false
+
+marked:
+  prependRoot: true
+  postAsset: false
+
+skip_render:
+  - images/**

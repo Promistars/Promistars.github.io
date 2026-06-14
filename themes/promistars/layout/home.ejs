@@ -1,0 +1,158 @@
+<%
+const profile = site.data.profile;
+const lang = profile.zh;
+const year = new Date().getFullYear();
+%>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= lang.metaTitle %></title>
+    <meta name="description" content="<%= lang.description %>">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<%= lang.metaTitle %>">
+    <meta property="og:description" content="<%= lang.description %>">
+    <meta property="og:url" content="<%= config.url %>/">
+    <meta property="og:site_name" content="<%= config.title %>">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <%- css('/css/site') %>
+  </head>
+  <body>
+    <canvas class="ambient-canvas" id="ambient" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <a class="brand" href="#hero" data-name><%= lang.name %></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about" data-nav="about"><%= lang.nav.about %></a>
+        <a href="#education" data-nav="education"><%= lang.nav.education %></a>
+        <a href="#projects" data-nav="projects"><%= lang.nav.projects %></a>
+        <a href="#honors" data-nav="honors"><%= lang.nav.honors %></a>
+        <a href="#leadership" data-nav="leadership"><%= lang.nav.leadership %></a>
+        <a href="#contact" data-nav="contact"><%= lang.nav.contact %></a>
+      </nav>
+      <button class="lang-toggle" type="button" data-lang-toggle><%= lang.nav.langSwitch %></button>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-hero="eyebrow"><%= lang.hero.eyebrow %></p>
+          <h1 data-name><%= lang.name %></h1>
+          <p class="role" data-hero="role"><%= lang.hero.role %></p>
+          <p class="tagline" data-hero="tagline"><%= lang.hero.tagline %></p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects" data-hero="ctaProjects"><%= lang.hero.ctaProjects %></a>
+            <a class="button secondary" href="#contact" data-hero="ctaContact"><%= lang.hero.ctaContact %></a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Profile highlights">
+          <div>
+            <span class="metric-label">Major GPA</span>
+            <strong data-education="gpaHighlight"><%= lang.education.gpaHighlight %></strong>
+            <span data-education="gpaMajor"><%= lang.education.gpaMajor %></span>
+          </div>
+          <div>
+            <span class="metric-label">Focus</span>
+            <strong>AI + Pharma</strong>
+            <span>Immunotherapy, epitope evaluation, research infra</span>
+          </div>
+          <div>
+            <span class="metric-label">Base</span>
+            <strong data-education="location"><%= lang.education.location %></strong>
+            <span>Zhejiang University</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-title">
+          <span>01</span>
+          <h2 data-about="title"><%= lang.about.title %></h2>
+        </div>
+        <div class="panel about-panel">
+          <p data-about="p1"><%= lang.about.p1 %></p>
+          <p data-about="p2"><%= lang.about.p2 %></p>
+        </div>
+      </section>
+
+      <section class="section" id="education">
+        <div class="section-title">
+          <span>02</span>
+          <h2 data-education="title"><%= lang.education.title %></h2>
+        </div>
+        <div class="education-grid">
+          <article class="panel education-main">
+            <h3 data-education="school"><%= lang.education.school %></h3>
+            <p class="accent" data-education="degree"><%= lang.education.degree %></p>
+            <ul>
+              <li><span data-education="college1"><%= lang.education.college1 %></span> · <span data-education="college2"><%= lang.education.college2 %></span></li>
+              <li data-education="intensive"><%= lang.education.intensive %></li>
+              <li data-education="minor"><%= lang.education.minor %></li>
+            </ul>
+          </article>
+          <aside class="panel education-stat">
+            <p data-education="period"><%= lang.education.period %></p>
+            <strong data-education="gpaHighlight"><%= lang.education.gpaHighlight %></strong>
+            <span data-education="gpaMajor"><%= lang.education.gpaMajor %></span>
+            <small data-education="gpaOverall"><%= lang.education.gpaOverall %></small>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-title">
+          <span>03</span>
+          <h2 data-projects-title><%= lang.projects.title %></h2>
+        </div>
+        <div class="project-list" data-project-list></div>
+      </section>
+
+      <section class="section" id="honors">
+        <div class="section-title">
+          <span>04</span>
+          <h2 data-honors-title><%= lang.honors.title %></h2>
+        </div>
+        <div class="honor-grid" data-honor-grid></div>
+      </section>
+
+      <section class="section" id="leadership">
+        <div class="section-title">
+          <span>05</span>
+          <h2 data-leadership-title><%= lang.leadership.title %></h2>
+        </div>
+        <div class="timeline" data-leadership-list></div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="section-title">
+          <span>06</span>
+          <h2 data-contact="title"><%= lang.contact.title %></h2>
+        </div>
+        <div class="panel contact-panel">
+          <div class="contact-lines">
+            <div>
+              <p class="field-label" data-contact="emailLabel"><%= lang.contact.emailLabel %></p>
+              <a class="contact-link" href="#" data-email-link></a>
+              <button class="small-button" type="button" data-copy-email><%= lang.contact.copy %></button>
+            </div>
+            <div>
+              <p class="field-label" data-contact="phoneLabel"><%= lang.contact.phoneLabel %></p>
+              <span class="contact-link" data-phone-value><%= lang.contact.phoneMasked %></span>
+              <button class="small-button" type="button" data-phone-toggle><%= lang.contact.revealPhone %></button>
+            </div>
+          </div>
+          <p class="contact-note" data-contact="footnote"><%= lang.contact.footnote %></p>
+        </div>
+        <footer class="page-footer">© <%= year %> <span data-name><%= lang.name %></span></footer>
+      </section>
+    </main>
+
+    <script>
+      window.__PROFILE__ = <%- JSON.stringify(profile) %>;
+    </script>
+    <%- js('/js/site') %>
+  </body>
+</html>
