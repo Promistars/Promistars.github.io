@@ -141,12 +141,21 @@ main {
 .hero-art {
   position: absolute;
   z-index: 0;
-  top: 5.5rem;
-  right: min(-8vw, -2rem);
-  width: min(74vw, 980px);
+  inset: 3.8rem min(-18vw, -8rem) auto auto;
+  width: min(88vw, 1180px);
+  height: min(70svh, 680px);
   margin: 0;
-  opacity: 0.82;
+  opacity: 0.38;
   pointer-events: none;
+  mix-blend-mode: multiply;
+  -webkit-mask-image:
+    radial-gradient(ellipse at 68% 42%, #000 0%, rgba(0, 0, 0, 0.82) 34%, rgba(0, 0, 0, 0.28) 60%, transparent 78%),
+    linear-gradient(90deg, transparent 0%, #000 28%, #000 100%);
+  mask-image:
+    radial-gradient(ellipse at 68% 42%, #000 0%, rgba(0, 0, 0, 0.82) 34%, rgba(0, 0, 0, 0.28) 60%, transparent 78%),
+    linear-gradient(90deg, transparent 0%, #000 28%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 .hero-art::after {
@@ -154,16 +163,17 @@ main {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, var(--paper) 0%, rgba(247, 250, 244, 0.74) 28%, rgba(247, 250, 244, 0.08) 68%),
-    linear-gradient(180deg, rgba(247, 250, 244, 0.28), var(--paper) 100%);
+    linear-gradient(90deg, var(--paper) 0%, rgba(247, 250, 244, 0.86) 22%, rgba(247, 250, 244, 0.16) 58%, var(--paper) 100%),
+    linear-gradient(180deg, var(--paper) 0%, rgba(247, 250, 244, 0) 18%, rgba(247, 250, 244, 0) 62%, var(--paper) 100%);
 }
 
 .hero-art img {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: 34px;
-  filter: saturate(0.95) contrast(0.98);
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 45%;
+  filter: saturate(0.72) contrast(0.9) blur(0.2px);
 }
 
 .eyebrow {
@@ -688,10 +698,10 @@ h1 {
   }
 
   .hero-art {
-    top: 7rem;
-    right: -35vw;
-    width: 120vw;
-    opacity: 0.48;
+    inset: 7rem -55vw auto auto;
+    width: 150vw;
+    height: 58svh;
+    opacity: 0.24;
   }
 
   .hero-card {
