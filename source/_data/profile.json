@@ -13,34 +13,36 @@
     "pages": {
       "about": {
         "metaTitle": "关于｜木晨璋",
-        "eyebrow": "ZJU · AI · Pharma",
+        "description": "木晨璋的个人主页：跨科学、技术、商业与组织协作的多元探索者。",
+        "eyebrow": "AI · Systems · Venture",
         "heading": "关于",
-        "lead": "浙江大学药学（A+）本科生，竺可桢学院创新与创业管理强化班成员，关注 AI for Science、免疫药物研发与科研基础设施。",
+        "role": "浙江大学 · 竺可桢学院 · AI × 多元探索",
+        "lead": "我是一个在科学、技术、商业与组织协作之间寻找连接的人。比起被单一标签定义，我更关注如何把复杂问题拆解成可推进、可验证、可生长的系统。",
         "ctaIntro": "查看简介",
         "ctaResume": "查看简历",
-        "highlightsTitle": "高亮信息",
+        "highlightsTitle": "核心信号",
         "metrics": [
           {
-            "label": "Major GPA",
+            "label": "Signal",
             "value": "4.59",
-            "note": "主修 GPA"
+            "note": "主修 GPA，稳定的学习底盘"
           },
           {
-            "label": "Scholarship",
+            "label": "Recognition",
             "value": "国家奖学金",
             "note": "2024 年获得"
           },
           {
-            "label": "Focus",
-            "value": "AI + Pharma",
-            "note": "免疫药物、表位评测、科研平台"
+            "label": "Mode",
+            "value": "AI × 多元探索",
+            "note": "科研、产品、运营与创新创业"
           }
         ],
         "highlights": [
-          "ImmuneFlow 全景式免疫药物疗法设计平台商业运营负责人，项目获国家级大创、浙大科创训练计划与多项创新创业赛事奖项。",
-          "参与构建多源免疫靶点、抗体序列、临床表位与文献数据底座，面向抗体药研发长周期、高成本、低成功率痛点。",
-          "负责 B 细胞表位 AI 评测体系与蛋白质功能标注模型探索，为免疫靶点筛选和抗体功能评估提供评价支撑。",
-          "兼具科研、项目运营与学生组织经验，曾统筹启真问学秘书处及科研平台学员约 2000 人。"
+          "长期在跨学科问题中工作：把科学问题、数据能力、产品逻辑和团队协作放到同一张地图上思考。",
+          "具备从概念到落地的项目推进经验，参与的创新项目获得国家级大创、浙大科创训练计划及多项赛事奖项支持。",
+          "擅长把模糊问题结构化：搭建数据底座、拆解评价体系、设计协作流程，并把复杂工作转化为可复用的方法。",
+          "在学生组织与科研平台中承担统筹角色，曾协调约 2000 人规模的平台社区与多轮创新活动。"
         ]
       },
       "intro": {
@@ -220,34 +222,36 @@
     "pages": {
       "about": {
         "metaTitle": "About | Chenzhang Mu",
-        "eyebrow": "ZJU · AI · Pharma",
+        "description": "Personal homepage of Chenzhang Mu: a multidisciplinary explorer across science, technology, venture thinking, and coordination.",
+        "eyebrow": "AI · Systems · Venture",
         "heading": "About",
-        "lead": "A Zhejiang University Pharmacy (A+) undergraduate in Chu Kochen Honors College's innovation and entrepreneurship program, focused on AI for Science, immunotherapy R&D, and research infrastructure.",
+        "role": "Zhejiang University · Chu Kochen Honors College · AI × Multidisciplinary",
+        "lead": "I work across science, technology, venture thinking, and coordination. Rather than being defined by one label, I care about turning complex questions into systems that can move, be tested, and keep growing.",
         "ctaIntro": "Read intro",
         "ctaResume": "View resume",
-        "highlightsTitle": "Selected highlights",
+        "highlightsTitle": "Core signals",
         "metrics": [
           {
-            "label": "Major GPA",
+            "label": "Signal",
             "value": "4.59",
-            "note": "Major GPA"
+            "note": "Major GPA, a steady academic base"
           },
           {
-            "label": "Scholarship",
+            "label": "Recognition",
             "value": "National Scholarship",
             "note": "Awarded in 2024"
           },
           {
-            "label": "Focus",
-            "value": "AI + Pharma",
-            "note": "Immunotherapy, epitope evaluation, research platforms"
+            "label": "Mode",
+            "value": "AI × Multidisciplinary",
+            "note": "Research, product, operations, and ventures"
           }
         ],
         "highlights": [
-          "Head of Business & Operations for ImmuneFlow, a panoramic immunotherapy design platform supported by national and ZJU innovation programs and multiple entrepreneurship awards.",
-          "Helped build a multi-source foundation of immune targets, antibody sequences, clinical epitopes, and literature for antibody drug development workflows.",
-          "Led exploration of B-cell epitope AI evaluation and protein function annotation to support target screening and antibody function assessment.",
-          "Combines research, operations, and student leadership experience, including coordinating a Qizhen Wenxue platform community of about 2,000 members."
+          "I work across disciplines, mapping scientific questions, data capabilities, product logic, and team collaboration into one operating view.",
+          "I have experience moving projects from concept to execution, with innovation work supported by national and ZJU programs and multiple competition awards.",
+          "I like structuring ambiguous problems: building data foundations, defining evaluation systems, designing workflows, and turning complex work into reusable methods.",
+          "I have taken coordination roles in student and research platforms, including work with a community of about 2,000 members and several innovation activity cycles."
         ]
       },
       "intro": {

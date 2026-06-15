@@ -187,7 +187,7 @@
     const currentPage = data.pages[pageKey] || data.pages.about;
     document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
     document.title = currentPage.metaTitle || data.metaTitle;
-    document.querySelector('meta[name="description"]').setAttribute("content", data.description);
+    document.querySelector('meta[name="description"]').setAttribute("content", currentPage.description || data.description);
 
     setText("[data-name]", data.name);
     setText("[data-name-meaning]", data.nameMeaning);
@@ -195,6 +195,7 @@
     setText("[data-lang-toggle]", data.nav.langSwitch);
     setText("[data-page-eyebrow]", currentPage.eyebrow);
     setText("[data-page-heading]", currentPage.heading);
+    setText("[data-page-role]", currentPage.role);
     setText("[data-page-lead]", currentPage.lead);
     Object.keys(data.hero).forEach((key) => setText(`[data-hero="${key}"]`, data.hero[key]));
     Object.keys(data.about).forEach((key) => setText(`[data-about="${key}"]`, data.about[key]));

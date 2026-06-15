@@ -14,10 +14,10 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= pageData.metaTitle %></title>
-    <meta name="description" content="<%= lang.description %>">
+    <meta name="description" content="<%= pageData.description || lang.description %>">
     <meta property="og:type" content="website">
     <meta property="og:title" content="<%= pageData.metaTitle %>">
-    <meta property="og:description" content="<%= lang.description %>">
+    <meta property="og:description" content="<%= pageData.description || lang.description %>">
     <meta property="og:url" content="<%= pageUrl %>">
     <meta property="og:site_name" content="<%= config.title %>">
     <meta name="twitter:card" content="summary">
@@ -25,7 +25,7 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/site.css?v=20260615-three-pages">
+    <link rel="stylesheet" href="/css/site.css?v=20260615-sci-fi-about">
   </head>
   <body data-page="<%= pageKey %>">
     <canvas class="ambient-canvas" id="ambient" aria-hidden="true"></canvas>
@@ -44,6 +44,11 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
 
     <main>
       <% if (pageKey === 'about') { %>
+        <div class="sci-fi-field" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <section class="hero page-hero" id="hero">
           <div class="hero-copy">
             <p class="eyebrow" data-page-eyebrow><%= pageData.eyebrow %></p>
@@ -52,7 +57,7 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
               <span class="name-seal" aria-hidden="true">璋</span>
               <p data-name-meaning><%= lang.nameMeaning %></p>
             </div>
-            <p class="role" data-hero="role"><%= lang.hero.role %></p>
+            <p class="role" data-page-role><%= pageData.role %></p>
             <p class="tagline" data-page-lead><%= pageData.lead %></p>
             <div class="hero-actions">
               <a class="button primary" href="/intro/" data-about-cta-intro><%= pageData.ctaIntro %></a>
@@ -200,6 +205,6 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
       window.__PROFILE__ = <%- JSON.stringify(profile) %>;
       window.__PAGE_KEY__ = "<%= pageKey %>";
     </script>
-    <script src="/js/site.js?v=20260615-three-pages"></script>
+    <script src="/js/site.js?v=20260615-sci-fi-about"></script>
   </body>
 </html>
