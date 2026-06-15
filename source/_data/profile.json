@@ -6,12 +6,70 @@
     "description": "浙江大学药学（A+）与竺可桢学院｜AI 赋能免疫药物与科研平台｜国家奖学金获得者",
     "nav": {
       "about": "关于",
-      "education": "教育",
-      "projects": "项目",
-      "honors": "荣誉",
-      "leadership": "学工",
-      "contact": "联系",
+      "intro": "简介",
+      "resume": "简历",
       "langSwitch": "EN"
+    },
+    "pages": {
+      "about": {
+        "metaTitle": "关于｜木晨璋",
+        "eyebrow": "ZJU · AI · Pharma",
+        "heading": "关于",
+        "lead": "浙江大学药学（A+）本科生，竺可桢学院创新与创业管理强化班成员，关注 AI for Science、免疫药物研发与科研基础设施。",
+        "ctaIntro": "查看简介",
+        "ctaResume": "查看简历",
+        "highlightsTitle": "高亮信息",
+        "metrics": [
+          {
+            "label": "Major GPA",
+            "value": "4.59",
+            "note": "主修 GPA"
+          },
+          {
+            "label": "Scholarship",
+            "value": "国家奖学金",
+            "note": "2024 年获得"
+          },
+          {
+            "label": "Focus",
+            "value": "AI + Pharma",
+            "note": "免疫药物、表位评测、科研平台"
+          }
+        ],
+        "highlights": [
+          "ImmuneFlow 全景式免疫药物疗法设计平台商业运营负责人，项目获国家级大创、浙大科创训练计划与多项创新创业赛事奖项。",
+          "参与构建多源免疫靶点、抗体序列、临床表位与文献数据底座，面向抗体药研发长周期、高成本、低成功率痛点。",
+          "负责 B 细胞表位 AI 评测体系与蛋白质功能标注模型探索，为免疫靶点筛选和抗体功能评估提供评价支撑。",
+          "兼具科研、项目运营与学生组织经验，曾统筹启真问学秘书处及科研平台学员约 2000 人。"
+        ]
+      },
+      "intro": {
+        "metaTitle": "简介｜木晨璋",
+        "eyebrow": "Profile",
+        "heading": "简介",
+        "lead": "我希望把生物医药里的复杂问题，转化为可被数据、模型和产品持续推进的系统。",
+        "blocks": [
+          {
+            "title": "我是谁",
+            "body": "我是木晨璋，来自浙江大学药学院与竺可桢学院。我的兴趣不只停留在单点模型或单次竞赛，而是更关注如何把科研问题、数据体系、产品路径和组织协作连成闭环。"
+          },
+          {
+            "title": "我在做什么",
+            "body": "目前主要围绕 AI 赋能免疫药物研发开展探索，包括免疫靶点知识库、B 细胞表位评测、蛋白质功能标注，以及面向科研场景的大模型工具和平台化运营。"
+          },
+          {
+            "title": "我如何工作",
+            "body": "我习惯在科研逻辑和现实落地之间来回校准：先把问题拆清楚，再搭建可复用的数据与流程，最后用清晰的表达、运营和协作把项目往前推。"
+          }
+        ],
+        "ctaResume": "查看完整简历"
+      },
+      "resume": {
+        "metaTitle": "简历｜木晨璋",
+        "eyebrow": "Resume",
+        "heading": "简历",
+        "lead": "教育背景、项目经历、荣誉奖项、学生工作与联系方式。"
+      }
     },
     "hero": {
       "eyebrow": "ZJU · AI · Pharma",
@@ -155,12 +213,70 @@
     "description": "ZJU Pharmacy (A+) & Chu Kochen Honors College | AI for immunotherapy & research platforms | National Scholarship",
     "nav": {
       "about": "About",
-      "education": "Education",
-      "projects": "Projects",
-      "honors": "Honors",
-      "leadership": "Leadership",
-      "contact": "Contact",
+      "intro": "Intro",
+      "resume": "Resume",
       "langSwitch": "中文"
+    },
+    "pages": {
+      "about": {
+        "metaTitle": "About | Chenzhang Mu",
+        "eyebrow": "ZJU · AI · Pharma",
+        "heading": "About",
+        "lead": "A Zhejiang University Pharmacy (A+) undergraduate in Chu Kochen Honors College's innovation and entrepreneurship program, focused on AI for Science, immunotherapy R&D, and research infrastructure.",
+        "ctaIntro": "Read intro",
+        "ctaResume": "View resume",
+        "highlightsTitle": "Selected highlights",
+        "metrics": [
+          {
+            "label": "Major GPA",
+            "value": "4.59",
+            "note": "Major GPA"
+          },
+          {
+            "label": "Scholarship",
+            "value": "National Scholarship",
+            "note": "Awarded in 2024"
+          },
+          {
+            "label": "Focus",
+            "value": "AI + Pharma",
+            "note": "Immunotherapy, epitope evaluation, research platforms"
+          }
+        ],
+        "highlights": [
+          "Head of Business & Operations for ImmuneFlow, a panoramic immunotherapy design platform supported by national and ZJU innovation programs and multiple entrepreneurship awards.",
+          "Helped build a multi-source foundation of immune targets, antibody sequences, clinical epitopes, and literature for antibody drug development workflows.",
+          "Led exploration of B-cell epitope AI evaluation and protein function annotation to support target screening and antibody function assessment.",
+          "Combines research, operations, and student leadership experience, including coordinating a Qizhen Wenxue platform community of about 2,000 members."
+        ]
+      },
+      "intro": {
+        "metaTitle": "Intro | Chenzhang Mu",
+        "eyebrow": "Profile",
+        "heading": "Intro",
+        "lead": "I want to turn complex biomedical questions into systems that can be advanced through data, models, and products.",
+        "blocks": [
+          {
+            "title": "Who I am",
+            "body": "I am Chenzhang Mu from Zhejiang University's School of Pharmacy and Chu Kochen Honors College. My interests go beyond single models or competitions: I care about linking research questions, data systems, product paths, and collaboration into a working loop."
+          },
+          {
+            "title": "What I work on",
+            "body": "My current work centers on AI-enabled immunotherapy R&D, including immune target knowledge bases, B-cell epitope evaluation, protein function annotation, and LLM-powered tools for research scenarios."
+          },
+          {
+            "title": "How I work",
+            "body": "I like to move between research logic and practical execution: define the problem clearly, build reusable data and processes, then use communication, operations, and coordination to push the project forward."
+          }
+        ],
+        "ctaResume": "View full resume"
+      },
+      "resume": {
+        "metaTitle": "Resume | Chenzhang Mu",
+        "eyebrow": "Resume",
+        "heading": "Resume",
+        "lead": "Education, selected projects, honors, student leadership, and contact information."
+      }
     },
     "hero": {
       "eyebrow": "ZJU · AI · Pharma",

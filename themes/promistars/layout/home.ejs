@@ -2,164 +2,204 @@
 const profile = site.data.profile;
 const lang = profile.zh;
 const year = new Date().getFullYear();
+const routePath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
+const pageKey = routePath.startsWith('intro') ? 'intro' : routePath.startsWith('resume') ? 'resume' : 'about';
+const pageData = lang.pages[pageKey];
+const pageUrl = pageKey === 'about' ? `${config.url}/about/` : `${config.url}/${pageKey}/`;
+const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"' : '';
 %>
 <!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= lang.metaTitle %></title>
+    <title><%= pageData.metaTitle %></title>
     <meta name="description" content="<%= lang.description %>">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="<%= lang.metaTitle %>">
+    <meta property="og:title" content="<%= pageData.metaTitle %>">
     <meta property="og:description" content="<%= lang.description %>">
-    <meta property="og:url" content="<%= config.url %>/">
+    <meta property="og:url" content="<%= pageUrl %>">
     <meta property="og:site_name" content="<%= config.title %>">
     <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="<%= pageUrl %>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/site.css?v=20260615-hehugo-layout">
+    <link rel="stylesheet" href="/css/site.css?v=20260615-three-pages">
   </head>
-  <body>
+  <body data-page="<%= pageKey %>">
     <canvas class="ambient-canvas" id="ambient" aria-hidden="true"></canvas>
     <figure class="hero-art" aria-hidden="true">
       <img src="/images/hero-science.png" alt="">
     </figure>
     <header class="site-header">
-      <a class="brand" href="#hero" data-name><%= lang.name %></a>
+      <a class="brand" href="/about/" data-name><%= lang.name %></a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#about" data-nav="about"><%= lang.nav.about %></a>
-        <a href="#education" data-nav="education"><%= lang.nav.education %></a>
-        <a href="#projects" data-nav="projects"><%= lang.nav.projects %></a>
-        <a href="#honors" data-nav="honors"><%= lang.nav.honors %></a>
-        <a href="#leadership" data-nav="leadership"><%= lang.nav.leadership %></a>
-        <a href="#contact" data-nav="contact"><%= lang.nav.contact %></a>
+        <a href="/about/" data-nav-page="about"<%- navAttr('about') %>><%= lang.pages.about.heading %></a>
+        <a href="/intro/" data-nav-page="intro"<%- navAttr('intro') %>><%= lang.pages.intro.heading %></a>
+        <a href="/resume/" data-nav-page="resume"<%- navAttr('resume') %>><%= lang.pages.resume.heading %></a>
       </nav>
       <button class="lang-toggle" type="button" data-lang-toggle><%= lang.nav.langSwitch %></button>
     </header>
 
     <main>
-      <section class="hero" id="hero">
-        <div class="hero-copy">
-          <p class="eyebrow" data-hero="eyebrow"><%= lang.hero.eyebrow %></p>
-          <h1 class="hero-name" data-name><%= lang.name %></h1>
-          <div class="name-note" aria-label="Name meaning">
-            <span class="name-seal" aria-hidden="true">璋</span>
-            <p data-name-meaning><%= lang.nameMeaning %></p>
+      <% if (pageKey === 'about') { %>
+        <section class="hero page-hero" id="hero">
+          <div class="hero-copy">
+            <p class="eyebrow" data-page-eyebrow><%= pageData.eyebrow %></p>
+            <h1 class="hero-name" data-name><%= lang.name %></h1>
+            <div class="name-note" aria-label="Name meaning">
+              <span class="name-seal" aria-hidden="true">璋</span>
+              <p data-name-meaning><%= lang.nameMeaning %></p>
+            </div>
+            <p class="role" data-hero="role"><%= lang.hero.role %></p>
+            <p class="tagline" data-page-lead><%= pageData.lead %></p>
+            <div class="hero-actions">
+              <a class="button primary" href="/intro/" data-about-cta-intro><%= pageData.ctaIntro %></a>
+              <a class="button secondary" href="/resume/" data-about-cta-resume><%= pageData.ctaResume %></a>
+            </div>
           </div>
-          <p class="role" data-hero="role"><%= lang.hero.role %></p>
-          <p class="tagline" data-hero="tagline"><%= lang.hero.tagline %></p>
-          <div class="hero-actions">
-            <a class="button primary" href="#projects" data-hero="ctaProjects"><%= lang.hero.ctaProjects %></a>
-            <a class="button secondary" href="#contact" data-hero="ctaContact"><%= lang.hero.ctaContact %></a>
-          </div>
-        </div>
-        <aside class="hero-card" aria-label="Profile highlights">
-          <div>
-            <span class="metric-label">Major GPA</span>
-            <strong data-education="gpaHighlight"><%= lang.education.gpaHighlight %></strong>
-            <span data-education="gpaMajor"><%= lang.education.gpaMajor %></span>
-          </div>
-          <div>
-            <span class="metric-label">Focus</span>
-            <strong>AI + Pharma</strong>
-            <span>Immunotherapy, epitope evaluation, research infra</span>
-          </div>
-          <div>
-            <span class="metric-label">Base</span>
-            <strong data-education="location"><%= lang.education.location %></strong>
-            <span>Zhejiang University</span>
-          </div>
-        </aside>
-      </section>
-
-      <section class="section" id="about">
-        <div class="section-title">
-          <span>01</span>
-          <h2 data-about="title"><%= lang.about.title %></h2>
-        </div>
-        <div class="panel about-panel">
-          <p data-about="p1"><%= lang.about.p1 %></p>
-          <p data-about="p2"><%= lang.about.p2 %></p>
-        </div>
-      </section>
-
-      <section class="section" id="education">
-        <div class="section-title">
-          <span>02</span>
-          <h2 data-education="title"><%= lang.education.title %></h2>
-        </div>
-        <div class="education-grid">
-          <article class="panel education-main">
-            <h3 data-education="school"><%= lang.education.school %></h3>
-            <p class="accent" data-education="degree"><%= lang.education.degree %></p>
-            <ul>
-              <li><span data-education="college1"><%= lang.education.college1 %></span> · <span data-education="college2"><%= lang.education.college2 %></span></li>
-              <li data-education="intensive"><%= lang.education.intensive %></li>
-              <li data-education="minor"><%= lang.education.minor %></li>
-            </ul>
-          </article>
-          <aside class="panel education-stat">
-            <p data-education="period"><%= lang.education.period %></p>
-            <strong data-education="gpaHighlight"><%= lang.education.gpaHighlight %></strong>
-            <span data-education="gpaMajor"><%= lang.education.gpaMajor %></span>
-            <small data-education="gpaOverall"><%= lang.education.gpaOverall %></small>
+          <aside class="hero-card" aria-label="Profile highlights" data-about-metrics>
+            <% pageData.metrics.forEach(metric => { %>
+              <div>
+                <span class="metric-label"><%= metric.label %></span>
+                <strong><%= metric.value %></strong>
+                <span><%= metric.note %></span>
+              </div>
+            <% }) %>
           </aside>
-        </div>
-      </section>
+        </section>
 
-      <section class="section" id="projects">
-        <div class="section-title">
-          <span>03</span>
-          <h2 data-projects-title><%= lang.projects.title %></h2>
-        </div>
-        <div class="project-list" data-project-list></div>
-      </section>
+        <section class="section" id="highlights">
+          <div class="section-title">
+            <span>01</span>
+            <h2 data-about-highlights-title><%= pageData.highlightsTitle %></h2>
+          </div>
+          <div class="honor-grid value-grid" data-about-highlights>
+            <% pageData.highlights.forEach((item, index) => { %>
+              <article class="panel honor-card value-card">
+                <h3><%= String(index + 1).padStart(2, '0') %></h3>
+                <p><%= item %></p>
+              </article>
+            <% }) %>
+          </div>
+        </section>
+      <% } %>
 
-      <section class="section" id="honors">
-        <div class="section-title">
-          <span>04</span>
-          <h2 data-honors-title><%= lang.honors.title %></h2>
-        </div>
-        <div class="honor-grid" data-honor-grid></div>
-      </section>
-
-      <section class="section" id="leadership">
-        <div class="section-title">
-          <span>05</span>
-          <h2 data-leadership-title><%= lang.leadership.title %></h2>
-        </div>
-        <div class="timeline" data-leadership-list></div>
-      </section>
-
-      <section class="section contact-section" id="contact">
-        <div class="section-title">
-          <span>06</span>
-          <h2 data-contact="title"><%= lang.contact.title %></h2>
-        </div>
-        <div class="panel contact-panel">
-          <div class="contact-lines">
-            <div>
-              <p class="field-label" data-contact="emailLabel"><%= lang.contact.emailLabel %></p>
-              <a class="contact-link" href="#" data-email-link></a>
-              <button class="small-button" type="button" data-copy-email><%= lang.contact.copy %></button>
-            </div>
-            <div>
-              <p class="field-label" data-contact="phoneLabel"><%= lang.contact.phoneLabel %></p>
-              <span class="contact-link" data-phone-value><%= lang.contact.phoneMasked %></span>
-              <button class="small-button" type="button" data-phone-toggle><%= lang.contact.revealPhone %></button>
+      <% if (pageKey === 'intro') { %>
+        <section class="hero page-hero intro-hero" id="hero">
+          <div class="hero-copy">
+            <p class="eyebrow" data-page-eyebrow><%= pageData.eyebrow %></p>
+            <h1 data-page-heading><%= pageData.heading %></h1>
+            <p class="tagline" data-page-lead><%= pageData.lead %></p>
+            <div class="hero-actions">
+              <a class="button primary" href="/resume/" data-intro-cta-resume><%= pageData.ctaResume %></a>
             </div>
           </div>
-          <p class="contact-note" data-contact="footnote"><%= lang.contact.footnote %></p>
-        </div>
-        <footer class="page-footer">© <%= year %> <span data-name><%= lang.name %></span></footer>
-      </section>
+        </section>
+
+        <section class="section" id="intro">
+          <div class="intro-stack" data-intro-blocks>
+            <% pageData.blocks.forEach((block, index) => { %>
+              <article class="panel intro-card">
+                <span><%= String(index + 1).padStart(2, '0') %></span>
+                <div>
+                  <h2><%= block.title %></h2>
+                  <p><%= block.body %></p>
+                </div>
+              </article>
+            <% }) %>
+          </div>
+        </section>
+      <% } %>
+
+      <% if (pageKey === 'resume') { %>
+        <section class="hero page-hero resume-hero" id="hero">
+          <div class="hero-copy">
+            <p class="eyebrow" data-page-eyebrow><%= pageData.eyebrow %></p>
+            <h1 data-page-heading><%= pageData.heading %></h1>
+            <p class="tagline" data-page-lead><%= pageData.lead %></p>
+          </div>
+        </section>
+
+        <section class="section" id="education">
+          <div class="section-title">
+            <span>01</span>
+            <h2 data-education="title"><%= lang.education.title %></h2>
+          </div>
+          <div class="education-grid">
+            <article class="panel education-main">
+              <h3 data-education="school"><%= lang.education.school %></h3>
+              <p class="accent" data-education="degree"><%= lang.education.degree %></p>
+              <ul>
+                <li><span data-education="college1"><%= lang.education.college1 %></span> · <span data-education="college2"><%= lang.education.college2 %></span></li>
+                <li data-education="intensive"><%= lang.education.intensive %></li>
+                <li data-education="minor"><%= lang.education.minor %></li>
+              </ul>
+            </article>
+            <aside class="panel education-stat">
+              <p data-education="period"><%= lang.education.period %></p>
+              <strong data-education="gpaHighlight"><%= lang.education.gpaHighlight %></strong>
+              <span data-education="gpaMajor"><%= lang.education.gpaMajor %></span>
+              <small data-education="gpaOverall"><%= lang.education.gpaOverall %></small>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section" id="projects">
+          <div class="section-title">
+            <span>02</span>
+            <h2 data-projects-title><%= lang.projects.title %></h2>
+          </div>
+          <div class="project-list" data-project-list></div>
+        </section>
+
+        <section class="section" id="honors">
+          <div class="section-title">
+            <span>03</span>
+            <h2 data-honors-title><%= lang.honors.title %></h2>
+          </div>
+          <div class="honor-grid" data-honor-grid></div>
+        </section>
+
+        <section class="section" id="leadership">
+          <div class="section-title">
+            <span>04</span>
+            <h2 data-leadership-title><%= lang.leadership.title %></h2>
+          </div>
+          <div class="timeline" data-leadership-list></div>
+        </section>
+
+        <section class="section contact-section" id="contact">
+          <div class="section-title">
+            <span>05</span>
+            <h2 data-contact="title"><%= lang.contact.title %></h2>
+          </div>
+          <div class="panel contact-panel">
+            <div class="contact-lines">
+              <div>
+                <p class="field-label" data-contact="emailLabel"><%= lang.contact.emailLabel %></p>
+                <a class="contact-link" href="#" data-email-link></a>
+                <button class="small-button" type="button" data-copy-email><%= lang.contact.copy %></button>
+              </div>
+              <div>
+                <p class="field-label" data-contact="phoneLabel"><%= lang.contact.phoneLabel %></p>
+                <span class="contact-link" data-phone-value><%= lang.contact.phoneMasked %></span>
+                <button class="small-button" type="button" data-phone-toggle><%= lang.contact.revealPhone %></button>
+              </div>
+            </div>
+            <p class="contact-note" data-contact="footnote"><%= lang.contact.footnote %></p>
+          </div>
+        </section>
+      <% } %>
+
+      <footer class="page-footer">© <%= year %> <span data-name><%= lang.name %></span></footer>
     </main>
 
     <script>
       window.__PROFILE__ = <%- JSON.stringify(profile) %>;
+      window.__PAGE_KEY__ = "<%= pageKey %>";
     </script>
-    <script src="/js/site.js?v=20260615-hehugo-layout"></script>
+    <script src="/js/site.js?v=20260615-three-pages"></script>
   </body>
 </html>

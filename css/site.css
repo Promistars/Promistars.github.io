@@ -134,11 +134,17 @@ button {
 }
 
 .nav-links a:hover,
+.nav-links a.is-active,
 .lang-toggle:hover,
 .small-button:hover {
   border-color: var(--line);
   background: rgba(255, 255, 255, 0.7);
   color: var(--teal);
+}
+
+.nav-links a.is-active {
+  border-color: rgba(15, 118, 110, 0.22);
+  background: rgba(15, 118, 110, 0.1);
 }
 
 .lang-toggle,
@@ -173,6 +179,16 @@ main {
   margin: 0 auto;
   padding: 5.5rem 0 4.5rem;
   text-align: center;
+}
+
+.page-hero {
+  min-height: min(100svh, 820px);
+}
+
+body[data-page="intro"] .page-hero,
+body[data-page="resume"] .page-hero {
+  min-height: min(62svh, 560px);
+  padding-bottom: 2rem;
 }
 
 .hero-copy {
@@ -246,6 +262,10 @@ h1 {
   font-size: clamp(4.2rem, 14vw, 10rem);
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+body:not([data-page="about"]) h1 {
+  font-size: clamp(4rem, 12vw, 8rem);
 }
 
 .hero-name {
@@ -708,6 +728,43 @@ html[lang="zh-CN"] .hero-name::after {
   font-size: 0.9rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.value-card p {
+  margin: 0.6rem 0 0;
+  color: #40564f;
+}
+
+.intro-stack {
+  display: grid;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.intro-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1.35rem, 3vw, 2rem);
+}
+
+.intro-card > span {
+  color: var(--teal);
+  font-family: var(--number);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.intro-card h2 {
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  font-weight: 700;
+}
+
+.intro-card p {
+  margin: 0.75rem 0 0;
+  color: #40564f;
+  font-size: 1.03rem;
 }
 
 .timeline {

@@ -1,5 +1,6 @@
 (function () {
   const PROFILE = window.__PROFILE__;
+  const pageKey = window.__PAGE_KEY__ || document.body.dataset.page || "about";
   const state = {
     lang: localStorage.getItem("site-lang") || "zh",
     phoneVisible: false
@@ -25,6 +26,7 @@
 
   function renderProjects(data) {
     const root = document.querySelector("[data-project-list]");
+    if (!root) return;
     root.innerHTML = data.projects.items
       .map((item, index) => {
         const highlights = item.highlights
@@ -57,6 +59,7 @@
 
   function renderHonors(data) {
     const root = document.querySelector("[data-honor-grid]");
+    if (!root) return;
     root.innerHTML = data.honors.blocks
       .map((block) => {
         const items = block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
@@ -72,6 +75,7 @@
 
   function renderLeadership(data) {
     const root = document.querySelector("[data-leadership-list]");
+    if (!root) return;
     root.innerHTML = data.leadership.items
       .map((item) => {
         const bullets = item.bullets.map((line) => `<li>${escapeHtml(line)}</li>`).join("");
@@ -85,6 +89,59 @@
           </article>
         `;
       })
+      .join("");
+  }
+
+  function renderAboutPage(data) {
+    const page = data.pages.about;
+    const metricsRoot = document.querySelector("[data-about-metrics]");
+    const highlightsRoot = document.querySelector("[data-about-highlights]");
+
+    setText("[data-about-cta-intro]", page.ctaIntro);
+    setText("[data-about-cta-resume]", page.ctaResume);
+    setText("[data-about-highlights-title]", page.highlightsTitle);
+
+    if (metricsRoot) {
+      metricsRoot.innerHTML = page.metrics
+        .map((metric) => `
+          <div>
+            <span class="metric-label">${escapeHtml(metric.label)}</span>
+            <strong>${escapeHtml(metric.value)}</strong>
+            <span>${escapeHtml(metric.note)}</span>
+          </div>
+        `)
+        .join("");
+    }
+
+    if (highlightsRoot) {
+      highlightsRoot.innerHTML = page.highlights
+        .map((item, index) => `
+          <article class="panel honor-card value-card">
+            <h3>${String(index + 1).padStart(2, "0")}</h3>
+            <p>${escapeHtml(item)}</p>
+          </article>
+        `)
+        .join("");
+    }
+  }
+
+  function renderIntroPage(data) {
+    const page = data.pages.intro;
+    const root = document.querySelector("[data-intro-blocks]");
+
+    setText("[data-intro-cta-resume]", page.ctaResume);
+
+    if (!root) return;
+    root.innerHTML = page.blocks
+      .map((block, index) => `
+        <article class="panel intro-card">
+          <span>${String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h2>${escapeHtml(block.title)}</h2>
+            <p>${escapeHtml(block.body)}</p>
+          </div>
+        </article>
+      `)
       .join("");
   }
 
@@ -118,6 +175,7 @@
 
   function updateContact(data) {
     const emailLink = document.querySelector("[data-email-link]");
+    if (!emailLink) return;
     emailLink.textContent = email;
     emailLink.href = `mailto:${email}`;
     setText("[data-phone-value]", state.phoneVisible ? phone : data.contact.phoneMasked);
@@ -126,14 +184,18 @@
 
   function applyLanguage() {
     const data = PROFILE[state.lang] || PROFILE.zh;
+    const currentPage = data.pages[pageKey] || data.pages.about;
     document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
-    document.title = data.metaTitle;
+    document.title = currentPage.metaTitle || data.metaTitle;
     document.querySelector('meta[name="description"]').setAttribute("content", data.description);
 
     setText("[data-name]", data.name);
     setText("[data-name-meaning]", data.nameMeaning);
-    Object.keys(data.nav).forEach((key) => setText(`[data-nav="${key}"]`, data.nav[key]));
+    Object.keys(data.pages).forEach((key) => setText(`[data-nav-page="${key}"]`, data.pages[key].heading));
     setText("[data-lang-toggle]", data.nav.langSwitch);
+    setText("[data-page-eyebrow]", currentPage.eyebrow);
+    setText("[data-page-heading]", currentPage.heading);
+    setText("[data-page-lead]", currentPage.lead);
     Object.keys(data.hero).forEach((key) => setText(`[data-hero="${key}"]`, data.hero[key]));
     Object.keys(data.about).forEach((key) => setText(`[data-about="${key}"]`, data.about[key]));
     Object.keys(data.education).forEach((key) => setText(`[data-education="${key}"]`, data.education[key]));
@@ -142,6 +204,8 @@
     setText("[data-leadership-title]", data.leadership.title);
     Object.keys(data.contact).forEach((key) => setText(`[data-contact="${key}"]`, data.contact[key]));
 
+    renderAboutPage(data);
+    renderIntroPage(data);
     renderProjects(data);
     renderHonors(data);
     renderLeadership(data);
@@ -213,13 +277,15 @@
     window.addEventListener("pagehide", () => cancelAnimationFrame(raf), { once: true });
   }
 
-  document.querySelector("[data-lang-toggle]").addEventListener("click", () => {
+  const langToggle = document.querySelector("[data-lang-toggle]");
+  langToggle.addEventListener("click", () => {
     state.lang = state.lang === "zh" ? "en" : "zh";
     localStorage.setItem("site-lang", state.lang);
     applyLanguage();
   });
 
-  document.querySelector("[data-copy-email]").addEventListener("click", async () => {
+  const copyEmail = document.querySelector("[data-copy-email]");
+  if (copyEmail) copyEmail.addEventListener("click", async () => {
     const data = PROFILE[state.lang] || PROFILE.zh;
     try {
       await navigator.clipboard.writeText(email);
@@ -230,7 +296,8 @@
     }
   });
 
-  document.querySelector("[data-phone-toggle]").addEventListener("click", () => {
+  const phoneToggle = document.querySelector("[data-phone-toggle]");
+  if (phoneToggle) phoneToggle.addEventListener("click", () => {
     state.phoneVisible = !state.phoneVisible;
     updateContact(PROFILE[state.lang] || PROFILE.zh);
   });
