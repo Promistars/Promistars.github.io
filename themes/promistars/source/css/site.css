@@ -69,29 +69,50 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  bottom: 0;
   z-index: 20;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 1rem;
-  align-items: center;
-  padding: 0.85rem clamp(1rem, 4vw, 3.5rem);
-  border-bottom: 1px solid rgba(19, 32, 27, 0.08);
-  background: rgba(247, 250, 244, 0.82);
+  display: flex;
+  width: 14rem;
+  flex-direction: column;
+  align-items: stretch;
+  border-right: 1px solid rgba(19, 32, 27, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(247, 250, 244, 0.9)),
+    var(--paper);
   backdrop-filter: blur(18px);
 }
 
+.site-header::before {
+  content: "";
+  display: block;
+  height: 6.8rem;
+  background:
+    linear-gradient(180deg, rgba(15, 118, 110, 0.2), rgba(247, 250, 244, 0.18)),
+    radial-gradient(circle at 30% 20%, rgba(159, 47, 36, 0.18), transparent 3.8rem),
+    radial-gradient(circle at 72% 36%, rgba(183, 121, 31, 0.18), transparent 4.5rem);
+  border-bottom: 1px solid rgba(19, 32, 27, 0.08);
+}
+
 .brand {
+  display: grid;
+  min-height: 5.2rem;
+  place-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(19, 32, 27, 0.08);
   font-family: var(--display);
+  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+  text-align: center;
 }
 
 .nav-links {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.3rem;
-  overflow-x: auto;
+  display: grid;
+  flex: 1;
+  align-content: start;
+  gap: 0.35rem;
+  padding: 1.2rem;
+  overflow-y: auto;
   scrollbar-width: none;
 }
 
@@ -103,8 +124,8 @@ button {
 .lang-toggle,
 .small-button {
   border: 1px solid transparent;
-  border-radius: 999px;
-  padding: 0.45rem 0.78rem;
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
   color: var(--muted);
   font-size: 0.82rem;
   font-weight: 600;
@@ -127,27 +148,37 @@ button {
   box-shadow: 0 8px 30px rgba(19, 32, 27, 0.06);
 }
 
+.lang-toggle {
+  margin: 0 1.2rem 1.2rem;
+}
+
 main {
   position: relative;
   z-index: 1;
-  width: min(1120px, calc(100% - 2rem));
-  margin: 0 auto;
+  width: auto;
+  max-width: none;
+  margin: 0 0 0 14rem;
+  padding: 0 clamp(1.25rem, 4vw, 4rem);
 }
 
 .hero {
   position: relative;
   min-height: 100svh;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
-  gap: clamp(2rem, 7vw, 5rem);
-  align-items: center;
-  padding: 7rem 0 4rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 2.6rem);
+  align-content: center;
+  justify-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 5.5rem 0 4.5rem;
+  text-align: center;
 }
 
 .hero-copy {
   position: relative;
   z-index: 2;
-  max-width: 780px;
+  max-width: 900px;
 }
 
 .hero-art {
@@ -267,8 +298,11 @@ html[lang="zh-CN"] .hero-name::after {
 .name-note {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.85rem;
   max-width: 640px;
+  margin-right: auto;
+  margin-left: auto;
   margin-top: clamp(0.75rem, 1.8vw, 1.2rem);
 }
 
@@ -308,7 +342,7 @@ html[lang="zh-CN"] .hero-name::after {
 
 .tagline {
   max-width: 620px;
-  margin: 1.6rem 0 0;
+  margin: 1.6rem auto 0;
   color: #274239;
   font-size: clamp(1.3rem, 3vw, 2.2rem);
   font-family: var(--serif-cn);
@@ -319,6 +353,7 @@ html[lang="zh-CN"] .hero-name::after {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
   margin-top: 2.3rem;
 }
@@ -398,7 +433,9 @@ html[lang="zh-CN"] .hero-name::after {
   position: relative;
   z-index: 2;
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+  width: min(100%, 880px);
   padding: 1rem;
   background: rgba(255, 255, 255, 0.88);
 }
@@ -410,6 +447,7 @@ html[lang="zh-CN"] .hero-name::after {
   border-radius: 18px;
   padding: 1.1rem;
   background: #f8faf7;
+  text-align: left;
   transition:
     transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 220ms ease,
@@ -449,14 +487,18 @@ html[lang="zh-CN"] .hero-name::after {
 
 .section {
   scroll-margin-top: 5.5rem;
+  max-width: 1080px;
+  margin: 0 auto;
   padding: clamp(3rem, 8vw, 6rem) 0;
 }
 
 .section-title {
   display: flex;
   align-items: baseline;
+  justify-content: center;
   gap: 0.85rem;
   margin-bottom: 1.3rem;
+  text-align: center;
 }
 
 .section-title span {
@@ -474,7 +516,9 @@ html[lang="zh-CN"] .hero-name::after {
 
 .about-panel {
   max-width: 780px;
+  margin: 0 auto;
   padding: clamp(1.4rem, 3vw, 2.4rem);
+  text-align: center;
 }
 
 .about-panel p {
@@ -782,13 +826,58 @@ html[lang="zh-CN"] .hero-name::after {
 
 @media (max-width: 860px) {
   .site-header {
+    right: 0;
+    bottom: auto;
+    display: grid;
     grid-template-columns: auto auto;
+    width: auto;
+    padding: 0.85rem clamp(1rem, 4vw, 3.5rem);
+    border-right: 0;
+    border-bottom: 1px solid rgba(19, 32, 27, 0.08);
+    background: rgba(247, 250, 244, 0.82);
+  }
+
+  .site-header::before {
+    display: none;
+  }
+
+  .brand {
+    min-height: auto;
+    place-items: start;
+    padding: 0;
+    border-bottom: 0;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-align: left;
   }
 
   .nav-links {
+    display: flex;
     grid-column: 1 / -1;
+    flex: none;
     justify-content: flex-start;
+    gap: 0.3rem;
     order: 3;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .nav-links a,
+  .lang-toggle,
+  .small-button {
+    border-radius: 999px;
+    padding: 0.45rem 0.78rem;
+  }
+
+  .lang-toggle {
+    margin: 0;
+  }
+
+  main {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 0;
   }
 
   .hero,
@@ -798,7 +887,27 @@ html[lang="zh-CN"] .hero-name::after {
   }
 
   .hero {
+    justify-items: start;
     padding-top: 8.5rem;
+    text-align: left;
+  }
+
+  .hero-copy {
+    max-width: 780px;
+  }
+
+  .name-note {
+    justify-content: flex-start;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .tagline {
+    margin-left: 0;
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
   }
 
   .hero-art {
@@ -809,7 +918,18 @@ html[lang="zh-CN"] .hero-name::after {
   }
 
   .hero-card {
+    grid-template-columns: 1fr;
     max-width: 520px;
+  }
+
+  .section-title {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .about-panel {
+    margin: 0;
+    text-align: left;
   }
 
   .honor-grid {
