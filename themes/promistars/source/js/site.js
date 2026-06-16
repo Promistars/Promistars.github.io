@@ -3,6 +3,7 @@
   const pageKey = window.__PAGE_KEY__ || document.body.dataset.page || "about";
   const state = {
     lang: localStorage.getItem("site-lang") || "zh",
+    theme: localStorage.getItem("site-theme") || "dark",
     phoneVisible: false
   };
 
@@ -159,6 +160,16 @@
       .join("");
   }
 
+  function applyTheme(data = PROFILE[state.lang] || PROFILE.zh) {
+    const themeToggle = document.querySelector("[data-theme-toggle]");
+    const label = state.theme === "dark" ? data.theme.toLight : data.theme.toDark;
+    document.body.dataset.theme = state.theme;
+    if (themeToggle) {
+      themeToggle.textContent = label;
+      themeToggle.setAttribute("aria-label", label);
+    }
+  }
+
   function setupInteractiveCards(root = document) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotion) return;
@@ -207,6 +218,7 @@
     setText("[data-name-meaning]", data.nameMeaning);
     Object.keys(data.pages).forEach((key) => setText(`[data-nav-page="${key}"]`, data.pages[key].heading));
     setText("[data-lang-toggle]", data.nav.langSwitch);
+    applyTheme(data);
     setText("[data-page-eyebrow]", currentPage.eyebrow);
     setText("[data-page-heading]", currentPage.heading);
     setText("[data-page-role]", currentPage.role);
@@ -259,7 +271,9 @@
 
     function draw(time) {
       ctx.clearRect(0, 0, width, height);
-      ctx.strokeStyle = "rgba(15, 118, 110, 0.045)";
+      const darkMode = document.body.dataset.theme === "dark";
+      const aboutMode = document.body.dataset.page === "about";
+      ctx.strokeStyle = aboutMode && darkMode ? "rgba(214, 169, 84, 0.07)" : darkMode ? "rgba(214, 169, 84, 0.04)" : "rgba(15, 118, 110, 0.045)";
       ctx.lineWidth = 1;
       const grid = 54;
       for (let x = 0; x < width + grid; x += grid) {
@@ -281,7 +295,7 @@
         if (p.x < 0 || p.x > 1) p.vx *= -1;
         if (p.y < 0 || p.y > 1) p.vy *= -1;
         ctx.beginPath();
-        ctx.fillStyle = "rgba(15, 118, 110, 0.22)";
+        ctx.fillStyle = aboutMode && darkMode ? "rgba(244, 210, 138, 0.22)" : darkMode ? "rgba(214, 169, 84, 0.16)" : "rgba(15, 118, 110, 0.22)";
         ctx.arc(p.x * width, p.y * height, p.r, 0, Math.PI * 2);
         ctx.fill();
       });
@@ -300,6 +314,13 @@
     state.lang = state.lang === "zh" ? "en" : "zh";
     localStorage.setItem("site-lang", state.lang);
     applyLanguage();
+  });
+
+  const themeToggle = document.querySelector("[data-theme-toggle]");
+  if (themeToggle) themeToggle.addEventListener("click", () => {
+    state.theme = state.theme === "dark" ? "light" : "dark";
+    localStorage.setItem("site-theme", state.theme);
+    applyTheme(PROFILE[state.lang] || PROFILE.zh);
   });
 
   const copyEmail = document.querySelector("[data-copy-email]");

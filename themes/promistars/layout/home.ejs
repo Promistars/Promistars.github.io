@@ -25,9 +25,9 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/site.css?v=20260616-sidebar-dock">
+    <link rel="stylesheet" href="/css/site.css?v=20260616-theme-toggle">
   </head>
-  <body data-page="<%= pageKey %>">
+  <body data-page="<%= pageKey %>" data-theme="dark">
     <canvas class="ambient-canvas" id="ambient" aria-hidden="true"></canvas>
     <figure class="hero-art" aria-hidden="true">
       <img src="/images/hero-science.png" alt="">
@@ -38,7 +38,10 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
         <a href="/about/" data-nav-page="about"<%- navAttr('about') %>><%= lang.pages.about.heading %></a>
         <a href="/intro/" data-nav-page="intro"<%- navAttr('intro') %>><%= lang.pages.intro.heading %></a>
         <a href="/resume/" data-nav-page="resume"<%- navAttr('resume') %>><%= lang.pages.resume.heading %></a>
-        <button class="lang-toggle" type="button" data-lang-toggle><%= lang.nav.langSwitch %></button>
+        <div class="nav-actions" aria-label="Display settings">
+          <button class="theme-toggle" type="button" data-theme-toggle><%= lang.theme.toLight %></button>
+          <button class="lang-toggle" type="button" data-lang-toggle><%= lang.nav.langSwitch %></button>
+        </div>
       </nav>
       <div class="sidebar-footer">
         <div class="utility-grid" data-dock-grid>
@@ -230,6 +233,6 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
       window.__PROFILE__ = <%- JSON.stringify(profile) %>;
       window.__PAGE_KEY__ = "<%= pageKey %>";
     </script>
-    <script src="/js/site.js?v=20260616-sidebar-dock"></script>
+    <script src="/js/site.js?v=20260616-theme-toggle"></script>
   </body>
 </html>

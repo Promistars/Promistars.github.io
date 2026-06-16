@@ -11,6 +11,10 @@
       "navigator": "导航",
       "langSwitch": "EN"
     },
+    "theme": {
+      "toLight": "白色版",
+      "toDark": "黑色版"
+    },
     "pages": {
       "about": {
         "metaTitle": "关于｜木晨璋",
@@ -240,6 +244,10 @@
       "resume": "Resume",
       "navigator": "Navigator",
       "langSwitch": "中文"
+    },
+    "theme": {
+      "toLight": "Light",
+      "toDark": "Dark"
     },
     "pages": {
       "about": {
