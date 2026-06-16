@@ -8,6 +8,7 @@
       "about": "关于",
       "intro": "简介",
       "resume": "简历",
+      "navigator": "导航",
       "langSwitch": "EN"
     },
     "pages": {
@@ -71,7 +72,27 @@
         "eyebrow": "Resume",
         "heading": "简历",
         "lead": "教育背景、项目经历、荣誉奖项、学生工作与联系方式。"
+      },
+      "navigator": {
+        "metaTitle": "个人导航｜木晨璋",
+        "description": "木晨璋的个人导航页，集中放置常用入口与项目链接。",
+        "eyebrow": "Navigator",
+        "heading": "个人导航",
+        "lead": "这里会逐步整理我的常用入口、项目、工具与公开链接。",
+        "emptyTitle": "导航入口建设中",
+        "emptyText": "第一枚功能图标已经接入。后续新增图标会自动在侧栏底部居中平铺，并跳转到对应页面。"
       }
+    },
+    "dock": {
+      "copyright": "All Rights Reserved.",
+      "items": [
+        {
+          "key": "navigator",
+          "label": "个人导航",
+          "href": "/navigator/",
+          "icon": "/images/ChatGPT Image 2026年6月16日 16_59_47.png"
+        }
+      ]
     },
     "hero": {
       "eyebrow": "ZJU · AI · Pharma",
@@ -217,6 +238,7 @@
       "about": "About",
       "intro": "Intro",
       "resume": "Resume",
+      "navigator": "Navigator",
       "langSwitch": "中文"
     },
     "pages": {
@@ -280,7 +302,27 @@
         "eyebrow": "Resume",
         "heading": "Resume",
         "lead": "Education, selected projects, honors, student leadership, and contact information."
+      },
+      "navigator": {
+        "metaTitle": "Navigator | Chenzhang Mu",
+        "description": "Personal navigator page for Chenzhang Mu, collecting common entries and project links.",
+        "eyebrow": "Navigator",
+        "heading": "Navigator",
+        "lead": "A growing hub for my frequently used entries, projects, tools, and public links.",
+        "emptyTitle": "Navigation hub in progress",
+        "emptyText": "The first functional icon is wired up. Future icons will automatically tile from the center in the sidebar footer and jump to their pages."
       }
+    },
+    "dock": {
+      "copyright": "All Rights Reserved.",
+      "items": [
+        {
+          "key": "navigator",
+          "label": "Navigator",
+          "href": "/navigator/",
+          "icon": "/images/ChatGPT Image 2026年6月16日 16_59_47.png"
+        }
+      ]
     },
     "hero": {
       "eyebrow": "ZJU · AI · Pharma",

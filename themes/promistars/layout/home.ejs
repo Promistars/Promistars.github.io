@@ -3,7 +3,7 @@ const profile = site.data.profile;
 const lang = profile.zh;
 const year = new Date().getFullYear();
 const routePath = String(page.path || '').replace(/index\.html$/, '').replace(/\/$/, '');
-const pageKey = routePath.startsWith('intro') ? 'intro' : routePath.startsWith('resume') ? 'resume' : 'about';
+const pageKey = routePath.startsWith('intro') ? 'intro' : routePath.startsWith('resume') ? 'resume' : routePath.startsWith('navigator') ? 'navigator' : 'about';
 const pageData = lang.pages[pageKey];
 const pageUrl = pageKey === 'about' ? `${config.url}/about/` : `${config.url}/${pageKey}/`;
 const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"' : '';
@@ -25,7 +25,7 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/site.css?v=20260615-sci-fi-about">
+    <link rel="stylesheet" href="/css/site.css?v=20260616-sidebar-dock">
   </head>
   <body data-page="<%= pageKey %>">
     <canvas class="ambient-canvas" id="ambient" aria-hidden="true"></canvas>
@@ -38,8 +38,18 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
         <a href="/about/" data-nav-page="about"<%- navAttr('about') %>><%= lang.pages.about.heading %></a>
         <a href="/intro/" data-nav-page="intro"<%- navAttr('intro') %>><%= lang.pages.intro.heading %></a>
         <a href="/resume/" data-nav-page="resume"<%- navAttr('resume') %>><%= lang.pages.resume.heading %></a>
+        <button class="lang-toggle" type="button" data-lang-toggle><%= lang.nav.langSwitch %></button>
       </nav>
-      <button class="lang-toggle" type="button" data-lang-toggle><%= lang.nav.langSwitch %></button>
+      <div class="sidebar-footer">
+        <div class="utility-grid" data-dock-grid>
+          <% lang.dock.items.forEach(item => { %>
+            <a class="utility-icon" href="<%= item.href %>" aria-label="<%= item.label %>" title="<%= item.label %>" data-dock-key="<%= item.key %>">
+              <img src="<%= item.icon %>" alt="">
+            </a>
+          <% }) %>
+        </div>
+        <p class="sidebar-copy"><span><%= year %> ©</span><span data-dock-copyright><%= lang.dock.copyright %></span></p>
+      </div>
     </header>
 
     <main>
@@ -198,13 +208,28 @@ const navAttr = key => key === pageKey ? ' class="is-active" aria-current="page"
         </section>
       <% } %>
 
-      <footer class="page-footer">© <%= year %> <span data-name><%= lang.name %></span></footer>
+      <% if (pageKey === 'navigator') { %>
+        <section class="hero page-hero navigator-hero" id="hero">
+          <div class="hero-copy">
+            <p class="eyebrow" data-page-eyebrow><%= pageData.eyebrow %></p>
+            <h1 data-page-heading><%= pageData.heading %></h1>
+            <p class="tagline" data-page-lead><%= pageData.lead %></p>
+          </div>
+        </section>
+
+        <section class="section" id="navigator">
+          <div class="panel navigator-panel">
+            <h2 data-navigator-empty-title><%= pageData.emptyTitle %></h2>
+            <p data-navigator-empty-text><%= pageData.emptyText %></p>
+          </div>
+        </section>
+      <% } %>
     </main>
 
     <script>
       window.__PROFILE__ = <%- JSON.stringify(profile) %>;
       window.__PAGE_KEY__ = "<%= pageKey %>";
     </script>
-    <script src="/js/site.js?v=20260615-sci-fi-about"></script>
+    <script src="/js/site.js?v=20260616-sidebar-dock"></script>
   </body>
 </html>

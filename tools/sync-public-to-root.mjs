@@ -10,9 +10,11 @@ const targets = [
   "about/index.html",
   "intro/index.html",
   "resume/index.html",
+  "navigator/index.html",
   "css/site.css",
   "js/site.js",
-  "images/hero-science.png"
+  "images/hero-science.png",
+  "images/ChatGPT Image 2026年6月16日 16_59_47.png"
 ];
 
 await mkdir(join(repoRoot, "css"), { recursive: true });

@@ -145,6 +145,20 @@
       .join("");
   }
 
+  function renderDock(data) {
+    const root = document.querySelector("[data-dock-grid]");
+    setText("[data-dock-copyright]", data.dock.copyright);
+
+    if (!root) return;
+    root.innerHTML = data.dock.items
+      .map((item) => `
+        <a class="utility-icon" href="${escapeHtml(item.href)}" aria-label="${escapeHtml(item.label)}" title="${escapeHtml(item.label)}" data-dock-key="${escapeHtml(item.key)}">
+          <img src="${escapeHtml(item.icon)}" alt="">
+        </a>
+      `)
+      .join("");
+  }
+
   function setupInteractiveCards(root = document) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotion) return;
@@ -197,6 +211,8 @@
     setText("[data-page-heading]", currentPage.heading);
     setText("[data-page-role]", currentPage.role);
     setText("[data-page-lead]", currentPage.lead);
+    setText("[data-navigator-empty-title]", currentPage.emptyTitle);
+    setText("[data-navigator-empty-text]", currentPage.emptyText);
     Object.keys(data.hero).forEach((key) => setText(`[data-hero="${key}"]`, data.hero[key]));
     Object.keys(data.about).forEach((key) => setText(`[data-about="${key}"]`, data.about[key]));
     Object.keys(data.education).forEach((key) => setText(`[data-education="${key}"]`, data.education[key]));
@@ -207,6 +223,7 @@
 
     renderAboutPage(data);
     renderIntroPage(data);
+    renderDock(data);
     renderProjects(data);
     renderHonors(data);
     renderLeadership(data);
